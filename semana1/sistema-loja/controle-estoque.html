@@ -1,43 +1,69 @@
 <!DOCTYPE html>
-<html>
-<head lang="pt-br">
-    <meta charset="utf-8">
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/estilo.css">
     <title>TopBeer - Estoque</title>
 </head>
 <body>
-	<h2>Controle de estoque</h2>
-    <table>
-        <thead>
-            <th>Foto</th>
-            <th>Descrição</th>
-            <th>Preço R$</th>
-            <th>Qtde disponível</th>
-        </thead>
-        <tr>
-            <td><img src="img/lager.jpg" class="imagem"></td>
-            <td>Lager </td>
-            <td>4,00</td>
-            <td>100</td>
-        </tr>
-        <tr>
-            <td><img src="img/IPA.jpg" class="imagem"></td>
-            <td>IPA </td>
-            <td>30,00</td>
-            <td>25</td>
-        </tr>
-        <tr>
-            <td><img src="img/weiss.jpg" class="imagem"></td>
-            <td>Weiss </td>
-            <td>20,00</td>
-            <td>50</td>
-        </tr>
-        <tr>
-            <td><img src="img/stout.jpg" class="imagem"></td>
-            <td>Stout </td>
-            <td>25,00</td>
-            <td>15</td>
-        </tr>
-    </table>
-    <a href="index.html">Home</a>
+    <header class="cabecalho-principal">
+        <div class="container">
+            <h1>TopBeer</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="controle-estoque.html">Estoque</a></li>
+                    <li><a href="adicionar-produto.html">Produtos</a></li>
+                    <li><a href="funcionários.html">Funcionários</a></li>
+                </ul>
+            </nav>
+        </div>   
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>Controle de estoque</h2>
+            <table>
+                <thead>
+                    <th>Foto</th>
+                    <th>Descrição</th>
+                    <th>Preço R$</th>
+                    <th>Qtde disponível</th>
+                </thead>
+                <tr>
+                    <td><img src="img/lager.jpg" class="imagem"></td>
+                    <td>Lager </td>
+                    <td>4,00</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td><img src="img/IPA.jpg" class="imagem"></td>
+                    <td>IPA </td>
+                    <td>30,00</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td><img src="img/weiss.jpg" class="imagem"></td>
+                    <td>Weiss </td>
+                    <td>20,00</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td><img src="img/stout.jpg" class="imagem"></td>
+                    <td>Stout </td>
+                    <td>25,00</td>
+                    <td>15</td>
+                </tr>
+            </table>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p class="rodape">Todos os direitos reservados ©</p>
+        </div>
+    </footer>
+	
 </body>
 </html>

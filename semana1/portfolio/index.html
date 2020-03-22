@@ -9,12 +9,12 @@
 <body>
     <header>
         <div class="container">
-            <h2>Rafael Cardoso</h2>
+            <h1>Rafael Cardoso</h1>
             <nav>
                 <ul>
-                    <li>Sobre</li>
-                    <li>Projetos</li>
-                    <li>Contato</li>
+                    <li><a href="index.html#sobre">Sobre</a></li>
+                    <li><a href="index.html#projetos">Projetos</a></li>
+                    <li><a href="index.html#contato">Contato</a></li>
                 </ul>
             </nav>
         </div>
@@ -22,9 +22,9 @@
 
     <main>
         <div class="container">
-            <div class="sobre">
+            <div id="sobre">
                 <div class="descricao">
-                    <h3>Sobre mim</h3>
+                    <h2>Sobre mim</h2>
                     <p>
                         Eu sou um Desenvolvedor Full Stack ainda em processo de aprendizado. 
                         Almejo, com esse portfolio, me mostrar apto para atuar nesse mercado.
@@ -42,41 +42,41 @@
                     <h3>Habilidades</h3>
                     <ul>
                         <li>Raciocínio lógico: ter estudado Engenharia e trabalhado por aproximadamente 5 anos na área me ajudou a desenvolvê-la;</li>
-                        <li>Serenidade: sempre que algo fora do esperado ocorre, me mantenho sob controle, algo muito útil, visto que ocorre sempre um imprevisto;</li>
                         <li>Facilidade de aprender: uma característica muito importante para essa área, que está em constante desenvolvimento;</li>
                         <li>Trabalho em equipe: prezo para o sucesso do time, sempre solícito para qualquer que seja a necessidade.</li>
+                        <li>Serenidade: sempre que algo fora do esperado ocorre, me mantenho sob controle, algo muito útil, visto que ocorre sempre um imprevisto;</li>
                     </ul>
                 </div>
             </div>
-            <div class="projetos">
-                <h3>Projetos</h3>
+            <div id="projetos">
+                <h2>Projetos</h2>
                 <ul>
-                    <li><a href="topbeer.html">TopBeer, loja de cerveja</a></li>
-                    <li><a href="aprovacao.html">Future4</a></li>
+                    <li><a href="topbeer.html"><img src="img/topbeer.png" alt="topbeer"></a></li>
+                    <li><a href="aprovacao.html"><img src="img/future4.jpg" alt="future4"></a></li>
                 </ul>
             </div>
-            <div class="contato">
-                <h3>Contato</h3>
-                <form action="">
+            <div id="contato">
+                <h2>Contato</h2>
+                <form>
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome" placeholder="Insira seu nome" required>
                     <label for="email">Email:</label>
                     <input type="text" id="email" name="email" placeholder="Insira seu e-mail" required>
                     <label for="comentario">Comentário:</label>
-                    <textarea name="comentario" id="comentario" cols="30" rows="10" placeholder="Deixe seu comentário"></textarea>
+                    <textarea name="comentario" id="comentario" cols="100" rows="8" placeholder="Deixe seu comentário"></textarea>
                     <input type="submit" value="Enviar" id="enviar">
                 </form>
-                <div>
-                    <a href="https://www.linkedin.com/in/rafael-cardoso-43732b1a5/">LinkedIn</a>
-                    <a href="https://github.com/rafafscardoso">GitHub</a>
-                    <a href="mailto:rafafscardoso@gmail.com">Email</a>
-                </div>
             </div>
         </div>
     </main>
 
     <footer>
         <div class="container">
+            <div class="midias-sociais">
+                <a href="https://www.linkedin.com/in/rafael-cardoso-43732b1a5/"><img src="img/icone-linkedin.png" alt="linkedin" class="icon"></a>
+                <a href="https://github.com/rafafscardoso"><img src="img/icone-github.png" alt="github" class="icon"></a>
+                <a href="mailto:rafafscardoso@gmail.com"><img src="img/icone-email.png" alt="email" class="icon"></a>
+            </div>
             <p class="rodape">Todos os direitos reservados ©</p>
         </div>
     </footer>

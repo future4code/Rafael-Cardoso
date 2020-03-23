@@ -71,12 +71,12 @@ div img {
     color: white;
 }
 
-#container-de-descricao div {
+#container-de-descricao > div {
     position: relative;
     top: 100px;
 }
 
-#container-de-descricao>ol {
+#container-de-descricao ol {
     padding: 15px 0px;
 }
 
@@ -91,6 +91,10 @@ div img {
     color: #c44f00;
     padding: 100px 0;
     font-size: 60px;
+}
+
+li {
+    list-style-position: inside;
 }
 
 

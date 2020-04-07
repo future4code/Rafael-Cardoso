@@ -30,3 +30,13 @@ forem negativos, porque o programa considera o menor número 0. Seria impresso n
 //d) true
 
 //e) true
+
+/* 2. Não funciona porque a variável quantidadeDeNumerosPares não foi definida e não há incremento do contador do loop, caracterizando 
+um loop infinito, além de iteraria até i ser menor ou igual a N, na verdade teria que ser menor */
+
+const quantidadeDeNumerosPares = 5;
+let i = 0;
+while (i < quantidadeDeNumerosPares) {
+    console.log(i * 2);
+    i++;
+}

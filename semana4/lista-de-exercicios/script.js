@@ -16,3 +16,17 @@ No console seria impresso: Quantidade total de números 14 \n 6 \n 8.
 forem negativos, porque o programa considera o menor número 0. Seria impresso no console -10 \n 1590.
 
 */
+
+//Exercícios de lógica de programação
+
+//1. 
+
+//a) false
+
+//b) false
+
+//c) true
+
+//d) true
+
+//e) true

@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+form {
+    margin: 1em 0;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input, select {
+    margin: 0 1em;
+}
+
+label {
+    margin-left: 1em;
+}
+
+.main-content {
+    margin: 1em 0;
+    /* display: flex;
+    justify-content: space-between;
+    align-items: flex-start; */
+}
+
+.main-content ul {
+    border-left: 1px solid black;
+    min-height: 80vh;
+    min-width: 13%;
+    padding-left: 1.5em;
+}
+
+.main-content li {
+    padding-top: 1em;
+}
+
+.planner {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.tarefa-cumprida {
+    text-decoration: line-through;
+}

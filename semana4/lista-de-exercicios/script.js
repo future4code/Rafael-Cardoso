@@ -7,6 +7,9 @@ O valor impresso no console depende do valor da cotação a ser inserido. Para t
 o valor impresso no console seria R$500.
 
 2. A função calcula qual seria o valor final para determinados investimentos tendo como parâmetros o tipo de investimento e o valor inicial.
-No caso do exemplo, o console imprimiria 165 e TIPO DE INVESTIMENTO INFORMADO INCORRETO!
+No caso do exemplo, o console imprimiria: 165 e TIPO DE INVESTIMENTO INFORMADO INCORRETO!
+
+3. O programa, tendo uma array de números, cria duas novas arrays, com a primeira contendo os números pares e a segunda os ímpares.
+No console seria impresso: Quantidade total de números 14, 6 e 8.
 
 */

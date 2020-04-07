@@ -40,3 +40,21 @@ while (i < quantidadeDeNumerosPares) {
     console.log(i * 2);
     i++;
 }
+
+//3.
+
+function classificaTriangulo (a, b, c) {
+    if (a !== undefined && b !== undefined && c !== undefined) {
+        if (a === b && b === c) {
+            return 'O triângulo é equilátero.';
+        } else if (a !== b && a !== c && b !== c) {
+            return 'O triângulo é escaleno.';
+        } else {
+            return 'O triângulo é isósceles.';
+        }
+    } else {
+        return 'Insira um triângulo válido.'
+    }
+}
+
+console.log(classificaTriangulo(20, 20, 20));

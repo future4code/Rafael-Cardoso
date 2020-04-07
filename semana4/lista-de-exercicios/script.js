@@ -58,3 +58,45 @@ function classificaTriangulo (a, b, c) {
 }
 
 console.log(classificaTriangulo(20, 20, 20));
+
+//4. 
+
+function mostraMaior (a, b) {
+    if (a > b) {
+        return 'O maior é ' + a; 
+    } else {
+        return 'O maior é: ' + b;
+    }
+    
+}
+
+function indicaIndivisibilidade (a, b) {
+    if (a % b === 0) {
+        return a + ' é divisível por ' + b;
+    } else {
+        return a + ' não é divisível por ' + b;
+    }
+}
+
+function determinaDiferença (a, b) {
+    if (a > b) {
+        return 'A diferença entre eles é ' + (a - b);
+    } else {
+        return 'A diferença entre eles é ' + (b - a);
+    }
+}
+
+const numero1 = 15;
+const numero2 = 30;
+
+if (numero1 !== undefined && numero2 !== undefined) {
+
+    
+    console.log('Entrada:\n' + numero1 + ' e ' + numero2);
+    
+    console.log('Saída:\n');
+    console.log(mostraMaior(numero1, numero2));
+    console.log(indicaIndivisibilidade(numero1, numero2));
+    console.log(indicaIndivisibilidade(numero2, numero1));
+    console.log(determinaDiferença(numero1, numero2));
+}

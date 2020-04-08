@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script defer src="js/main.js"></script>
+    <title>Blog</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Meu blog</h1>
+        </div>
+    </header> 
+
+    <main>
+        <div class="container">
+            <form>
+                <div>
+                    <div>
+                        <div class="campo-form">
+                            <label for="form-titulo-post">Título:</label>
+                            <input type="text" id="form-titulo-post" required>
+                        </div>
+                        <div class="campo-form">
+                            <label for="form-autor-post">Autor:</label>
+                            <input type="text" id="form-autor-post" required>
+                        </div>
+                        <div class="campo-form">
+                            <label for="form-imagem-post">Imagem:</label>
+                            <input type="text" id="form-imagem-post" placeholder="url">
+                        </div>
+                    </div>
+                    <div class="campo-form">
+                        <label for="form-conteudo-post">Conteúdo:</label>
+                        <textarea name="" id="form-conteudo-post" cols="50" rows="10" required></textarea>
+                    </div>
+                </div>
+                <div>
+                    <input type="submit" value="Publicar" id="form-botao-post" onclick="guardaDados()">
+                </div>
+            </form>
+            <section id="main-content"></section>
+        </div>
+    </main>
+
+    <!-- <footer>
+        <div class="container"></div>
+    </footer> -->
+    
+</body>
+</html>

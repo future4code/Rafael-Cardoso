@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+header {
+    padding: 2rem 0;
+    background-color: cadetblue;
+}
+
+main {
+    padding: 2rem 0;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+}
+
+form > div:first-child {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+form > div > div {
+    padding: 0 2rem;
+}
+
+form > div > div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.campo-form {
+    display: flex;
+    flex-direction: column;
+}
+
+form > div:last-child {
+    align-self: flex-end;
+}
+
+#main-content {
+    margin: 2em 0;
+}
+
+#main-content h2, #main-content h4, #main-content p {
+    margin: 1em 0;
+}
+
+#main-content img {
+    max-width: 100%;

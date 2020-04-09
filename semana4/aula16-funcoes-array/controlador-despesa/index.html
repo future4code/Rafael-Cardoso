@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script defer src="js/main.js"></script>
+    <title>Controle de Despesas</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>MeuControle</h1>
+        </div>
+    </header> 
+
+    <main>
+        <div class="container">
+            <section class="cadastro">
+                <h2>Controlador de Despesa</h2>
+                <h3>Cadastrar despesa</h3>
+                <form>
+                    <label for="form-valor-cadastro">Valor: </label>
+                    <input type="number" id="form-valor-cadastro" min="0" required>
+                    <label for="form-tipo-cadastro">Tipo:</label>
+                    <select name="" id="form-tipo-cadastro" required>
+                        <option value="Casa">Casa</option>
+                        <option value="Alimentação">Alimentação</option>
+                        <option value="Viagem">Viagem</option>
+                        <option value="Transporte">Transporte</option>
+                        <option value="Serviços">Serviços</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                    <label for="form-descricao-cadastro">Descrição:</label>
+                    <input type="text" id="form-descricao-cadastro">
+                    <input type="submit" value="Cadastrar despesa" id="form-submit-cadastro" onclick="recebeDespesa()">
+                </form>
+            </section>
+            <section class="detalhe">
+                <h2>Despesas Detalhadas</h2>
+                <form class="filtro">
+                    <label for="form-tipo-filtro">Tipo:</label>
+                    <select name="" id="form-tipo-filtro">
+                        <option value=""></option>
+                        <option value="Casa">Casa</option>
+                        <option value="Alimentação">Alimentação</option>
+                        <option value="Viagem">Viagem</option>
+                        <option value="Transporte">Transporte</option>
+                        <option value="Serviços">Serviços</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                    <label for="form-valor-minimo-filtro">Valor mínimo: </label>
+                    <input type="number" id="form-valor-minimo-filtro" min="0">
+                    <label for="form-valor-maximo-filtro">Valor máximo: </label>
+                    <input type="number" id="form-valor-maximo-filtro" min="0">
+                    <input type="submit" value="Filtrar" id="form-submit-cadastro" onclick="filtra()">
+                    <input type="submit" value="Limpar Filtros" id="form-submit-cadastro" onclick="limpaFiltros()">
+                </form>
+                <div id="lista-despesas"></div>
+            </section>
+            <section class="extrato">
+                <h2>Extrato</h2>
+                <h3>Valor total</h3>
+                <div id="valor-total"></div>
+                <h3>Valor pelo tipo selecionado</h3>
+                <div id="valor-total-tipo-filtro"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- <footer>
+        <div class="container"></div>
+    </footer> -->
+    
+</body>
+</html>

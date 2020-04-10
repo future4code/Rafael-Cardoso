@@ -192,4 +192,27 @@ let filmeFavorito = {
     elenco: ['Marlon Brando', 'Al Pacino', 'Robert Duvall', 'James Caan', 'Diane Keaton']
 }
 
-imprimeFilme(filmeFavorito)
+imprimeFilme(filmeFavorito);
+
+//4.
+
+function anonimizaPessoa (objeto) {
+    novoObjeto = {
+        ...objeto,
+        nome: 'ANONIMA'
+    }
+    return novoObjeto;
+}
+
+let pessoa = {
+    nome: 'Zezinho',
+    idade: 30,
+    email: 'zezinho@bol.com.br',
+    endereco: 'Rua da Coves, 500'
+}
+
+let pessoaAnonima = anonimizaPessoa(pessoa);
+
+console.log(pessoa);
+
+console.log(pessoaAnonima);

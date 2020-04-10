@@ -174,3 +174,22 @@ function criaRetangulo (a, b) {
     return retangulo;
 }
 
+//3.
+
+function imprimeFilme (objeto) {
+    let impressao = `Venha assistir ao filme ${objeto.titulo}, de ${objeto.ano}, dirigido por ${objeto.diretor} e estrelado por ${objeto.elenco[0]}`;
+    for (i = 1; i < objeto.elenco.length; i++) {
+        impressao += `, ${objeto.elenco[i]}`
+    }
+    impressao += '.'
+    console.log(impressao);
+}
+
+let filmeFavorito = {
+    titulo: 'O Poderoso Chefão',
+    ano: '1972',
+    diretor: 'Francis Ford Copolla',
+    elenco: ['Marlon Brando', 'Al Pacino', 'Robert Duvall', 'James Caan', 'Diane Keaton']
+}
+
+imprimeFilme(filmeFavorito)

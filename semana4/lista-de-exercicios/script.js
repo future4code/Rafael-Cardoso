@@ -262,3 +262,37 @@ let listaPessoas = [
 console.log(retornaAdultos(listaPessoas));
 console.log(retornaJovem(listaPessoas));
 
+//3. 
+
+function multiplicadosPor2 (array) {
+    return array.map(numero => {
+        return numero *= 2;
+    });
+}
+
+function multiplicadosPor3TransformandoString (array) {
+    return array.map(numero => {
+        return String(numero *= 3);
+    })
+}
+
+function mostraParidade (array) {
+    return array.map(numero => {
+        if (numero % 2 === 0) {
+            return `${numero} é par`;
+        } else {
+            return `${numero} é ímpar`;
+        }
+    })
+}
+
+const array = [1, 2, 3, 4, 5, 6];
+
+console.log(multiplicadosPor2(array));
+
+console.log(multiplicadosPor3TransformandoString(array));
+
+console.log(mostraParidade(array));
+
+console.log(array);
+

@@ -164,3 +164,13 @@ em que é feita de forma ordenada, usando para acessar cada elemento um índice 
 
 //2.
 
+function criaRetangulo (a, b) {
+    let retangulo = {
+        largura: a,
+        altura: b,
+        perimetro: 2 * (a + b),
+        area: a * b
+    }
+    return retangulo;
+}
+

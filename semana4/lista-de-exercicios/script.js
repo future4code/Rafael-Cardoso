@@ -146,8 +146,21 @@ imprimeSegundoMaiorESegundoMenor(arrayNumeros);
 
 //2.
 
-let helloFuture4 = function () {
-    alert('Hello Future4');
-}
+// let helloFuture4 = function () {
+//     alert('Hello Future4');
+// }
 
-helloFuture4();
+// helloFuture4();
+
+//Exercícios de objetos
+
+/*
+
+1. Objetos são usados para representar dados de forma mais intuitiva, digamos assim, em que as propriedades tem um nome que facilite 
+a compreensão, mas isso é feita sem precisar ser ordenada. O array é usado também para guardar várias informações, mas em forma de lista,
+em que é feita de forma ordenada, usando para acessar cada elemento um índice que representa a posição de cada um.
+
+*/
+
+//2.
+

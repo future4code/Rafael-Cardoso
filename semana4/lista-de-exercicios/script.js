@@ -144,3 +144,10 @@ function imprimeSegundoMaiorESegundoMenor (array) {
 let arrayNumeros = [6, 78, 4, 21, 32, 9, 45, 2, 80];
 imprimeSegundoMaiorESegundoMenor(arrayNumeros);
 
+//2.
+
+let helloFuture4 = function () {
+    alert('Hello Future4');
+}
+
+helloFuture4();

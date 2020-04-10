@@ -216,3 +216,25 @@ let pessoaAnonima = anonimizaPessoa(pessoa);
 console.log(pessoa);
 
 console.log(pessoaAnonima);
+
+//Exercícios de Funções de Array
+
+//1. Pode ser usado o while, for e for of.
+
+// let lista = [1, 2, 3, 4];
+
+// i = 0;
+
+// while (i < lista.length) {
+//     console.log(lista[i]);
+//     i++;
+// }
+
+// for (i = 0; i < lista.length; i++) {
+//     console.log(lista[i]);
+// }
+
+// for (numero of lista) {
+//     console.log(numero);
+// }
+

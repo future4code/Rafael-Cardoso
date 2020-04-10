@@ -309,14 +309,51 @@ function naoPermiteMontanhaRussa (array) {
 }
 
 const pessoas = [
-	{ nome: "Paula", idade: 12, altura: 1.8},
-	{ nome: "João", idade: 20, altura: 1.3},
-	{ nome: "Pedro", idade: 15, altura: 1.9},
-	{ nome: "Luciano", idade: 22, altura: 1.8},
-	{ nome: "Artur", idade: 10, altura: 1.2},
-	{ nome: "Soter", idade: 70, altura: 1.9}
+	{nome: "Paula", idade: 12, altura: 1.8},
+	{nome: "João", idade: 20, altura: 1.3},
+	{nome: "Pedro", idade: 15, altura: 1.9},
+	{nome: "Luciano", idade: 22, altura: 1.8},
+	{nome: "Artur", idade: 10, altura: 1.2},
+	{nome: "Soter", idade: 70, altura: 1.9}
 ];
 
 console.log(permiteMontanhaRussa(pessoas));
 
 console.log(naoPermiteMontanhaRussa(pessoas));
+
+//5.
+
+function geraTextoEmail (array) {
+    let emails = [];
+    array.forEach(consulta => {
+        let email = 'Olá, ';
+        if (consulta.cancelada) {
+            if (consulta.genero === 'masculino') {
+                email += 'Sr. '
+            } else if (consulta.genero === 'feminino') {
+                email += 'Sra. ';
+            }
+            email += `${consulta.nome}. Infelizmente, sua consulta marcada para o dia ${consulta.dataDaConsulta} foi cancelada. Se quiser, pode entrar em contato conosco para remarcá-la.`
+        } else {
+            if (consulta.genero === 'masculino') {
+                email += `Sr. ${consulta.nome}. Estamos enviando esta mensagem para lembrá-lo `;
+            } else if (consulta.genero === 'feminino') {
+                email += `Sra. ${consulta.nome}. Estamos enviando esta mensagem para lembrá-la `;
+            }
+            email += `da sua consulta no dia ${consulta.dataDaConsulta}. Por favor, acuse o recebimento deste e-mail.`
+        }
+        emails.push(email);
+    });
+    return emails;
+}
+
+const consultas = [
+	{nome: "João", genero: "masculino", cancelada: true, dataDaConsulta: "01/10/2019" },
+	{nome: "Pedro", genero: "masculino", cancelada: false, dataDaConsulta: "02/10/2019" },
+	{nome: "Paula", genero: "feminino", cancelada: true, dataDaConsulta: "03/11/2019" },
+	{nome: "Márcia", genero: "feminino", cancelada: false, dataDaConsulta: "04/11/2019" }
+];
+
+console.log(geraTextoEmail(consultas));
+
+//6.

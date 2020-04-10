@@ -91,12 +91,56 @@ const numero2 = 30;
 
 if (numero1 !== undefined && numero2 !== undefined) {
 
-    
-    console.log('Entrada:\n' + numero1 + ' e ' + numero2);
-    
-    console.log('Saída:\n');
+    console.log('Entrada:');
+    console.log(`${numero1} e ${numero2}`)
+    console.log('Saída:');
     console.log(mostraMaior(numero1, numero2));
     console.log(indicaIndivisibilidade(numero1, numero2));
     console.log(indicaIndivisibilidade(numero2, numero1));
     console.log(determinaDiferença(numero1, numero2));
 }
+
+//Exercícios de funções
+
+//1.
+
+function imprimeSegundoMaiorESegundoMenor (array) {
+    let indexMaior;
+    let indexMenor;
+    let numeroMaior = -Infinity;
+    let numeroMenor = Infinity;
+    let arraySec = [];
+    for (numero of array) {
+        arraySec.push(numero);
+        if (numero > numeroMaior) {
+            numeroMaior = numero;
+            indexMaior = array.indexOf(numero);
+        }
+        if (numero < numeroMenor) {
+            numeroMenor = numero;
+            indexMenor = array.indexOf(numero);
+        }
+    }
+    if (indexMaior < indexMenor) {
+        arraySec.splice(indexMenor, 1);
+        arraySec.splice(indexMaior, 1);
+    } else {
+        arraySec.splice(indexMaior, 1);
+        arraySec.splice(indexMenor, 1);
+    }
+    numeroMaior = -Infinity;
+    numeroMenor = Infinity;
+    for (numero of arraySec) {
+        if (numero > numeroMaior) {
+            numeroMaior = numero;
+        }
+        if (numero < numeroMenor) {
+            numeroMenor = numero;
+        }
+    }
+    console.log(`O segundo número maior é ${numeroMaior} é o segundo número menor é ${numeroMenor}.`);
+} 
+
+let arrayNumeros = [6, 78, 4, 21, 32, 9, 45, 2, 80];
+imprimeSegundoMaiorESegundoMenor(arrayNumeros);
+

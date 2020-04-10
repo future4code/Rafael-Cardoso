@@ -238,3 +238,27 @@ console.log(pessoaAnonima);
 //     console.log(numero);
 // }
 
+//2. 
+
+function retornaAdultos (array) {
+    return array.filter(pessoa => {
+        return pessoa.idade >= 20;
+    });
+}
+
+function retornaJovem (array) {
+    return array.filter(pessoa => {
+        return pessoa.idade < 20;
+    });
+}
+
+let listaPessoas = [
+    {nome: 'Pedro', idade: 20},
+    {nome: 'João', idade: 10},
+    {nome: 'Paula', idade: 12},
+    {nome: 'Artur', idade: 89}
+];
+
+console.log(retornaAdultos(listaPessoas));
+console.log(retornaJovem(listaPessoas));
+

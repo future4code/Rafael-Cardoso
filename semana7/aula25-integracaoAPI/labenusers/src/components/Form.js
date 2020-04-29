@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const FormContainer = styled.div`
   display: flex;
@@ -19,6 +20,43 @@ const BotaoInput = styled.input`
 `
 
 class Form extends React.Component {
+  state = {
+    inputNomeValue: '',
+    inputEmailValue: '',
+  }
+
+  enviaDados = () => {
+    const body = {
+      "name": this.state.inputNomeValue,
+      "email": this.state.inputEmailValue
+    }
+    axios
+      .post(
+        'https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users',
+        body,
+        {
+          headers: {
+            Authorization: "rafael-cardoso-julian"
+          }
+        }
+      )
+      .then(resposta => {
+        window.alert('Incluído com sucesso');
+      })
+      .catch(error => {
+        window.alert('Aconteceu algo errado');
+        console.log(error.response);
+      });
+    this.setState({ inputNomeValue: '', inputEmailValue: '' })
+  }
+
+  onChangeInputNome = (event) => {
+    this.setState({ inputNomeValue: event.target.value });
+  }
+
+  onChangeInputEmail = (event) => {
+    this.setState({ inputEmailValue: event.target.value });
+  }
 
   render() {
     return (
@@ -26,14 +64,14 @@ class Form extends React.Component {
         <FormContainer>
           <InputContainer>
             <label htmlFor='nome'>Nome: </label>
-            <input id='nome' value={this.props.nomeValue} onChange={this.props.onChangeNome} />
+            <input id='nome' value={this.state.inputNomeValue} onChange={this.onChangeInputNome} />
           </InputContainer>
           <InputContainer>
             <label htmlFor='email'>Email: </label>
-            <input id='email' value={this.props.emailValue} onChange={this.props.onChangeEmail} />
+            <input id='email' value={this.state.inputEmailValue} onChange={this.onChangeInputEmail} />
           </InputContainer>
           <BotaoContainer>
-            <BotaoInput type='submit' value='Salvar' onClick={this.props.onClickEnvia} />
+            <BotaoInput type='submit' value='Salvar' onClick={this.enviaDados} />
           </BotaoContainer>
         </FormContainer>
       </div>

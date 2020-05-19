@@ -1,25 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import HomePage from './Pages/HomePage';
+import LoginPage from './Pages/LoginPage';
+import ListTripsPage from './Pages/ListTripsPage';
+import TripDetailsPage from './Pages/TripDetailsPage';
+import CreateTripPage from './Pages/CreateTripPage';
+import styled from 'styled-components';
+
+const AppContainer = styled.div``
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/'>
+            <HomePage />
+          </Route>
+          <Route exact path='/login'>
+            <LoginPage />
+          </Route>
+          <Route exact path='/trips/list'>
+            <ListTripsPage />
+          </Route>
+          <Route exact path='/trips/details/:tripId'>
+            <TripDetailsPage />
+          </Route>
+          <Route exact path='/trips/create'>
+            <CreateTripPage />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </AppContainer>
   );
 }
 

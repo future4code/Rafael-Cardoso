@@ -1,8 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom'
-import Header from '../../components/Header';
-import NavMenu from '../../components/NavMenu';
-import Footer from '../../components/Footer';
+import { useParams } from 'react-router-dom';
 import {
   TripDetailsPageContainer,
 } from './style';
@@ -14,10 +11,7 @@ const TripDetailsPage = (props) => {
 
   return (
     <TripDetailsPageContainer>
-      <Header />
-      <NavMenu />
       TripDetailsPageContainer
-      <Footer />
     </TripDetailsPageContainer>
   )
 }

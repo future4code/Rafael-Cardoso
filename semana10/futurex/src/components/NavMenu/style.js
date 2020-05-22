@@ -1,4 +1,9 @@
 import styled from 'styled-components';
-import {} from '@material-ui/core';
+import {
+  Button
+} from '@material-ui/core';
 
-export const NavMenuContainer = styled.div``
+export const NavMenuContainer = styled.div`
+  display: flex;
+`
+export const MenuButton = styled(Button)``

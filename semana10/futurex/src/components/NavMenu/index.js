@@ -1,7 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import {
-  NavMenuContainer
+  NavMenuContainer,
+  MenuButton
 } from './style';
 
 const NavMenu = (props) => {
@@ -15,12 +16,18 @@ const NavMenu = (props) => {
   const goToCreateTripPage = () => {
     history.push('/trips/create');
   }
+
+  const logingOut = () => {
+    props.setLogado(false);
+    props.setToken('');
+    history.push('/');
+  }
   
   return (
     <NavMenuContainer>
-      NavMenu
-      <p onClick={goToListTripsPage} >Lista de viagens</p>
-      <p onClick={goToCreateTripPage} >Crie uma viagem</p>
+      <MenuButton onClick={goToListTripsPage} >Lista de viagens</MenuButton>
+      <MenuButton onClick={goToCreateTripPage} >Crie uma viagem</MenuButton>
+      <MenuButton onClick={logingOut} >Deslogar</MenuButton>
     </NavMenuContainer>
   )
 }

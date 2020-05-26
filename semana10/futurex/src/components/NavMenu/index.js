@@ -5,7 +5,7 @@ import {
   MenuButton
 } from './style';
 
-const NavMenu = (props) => {
+const NavMenu = () => {
 
   const history = useHistory();
 
@@ -18,8 +18,7 @@ const NavMenu = (props) => {
   }
 
   const logingOut = () => {
-    props.setLogado(false);
-    props.setToken('');
+    window.localStorage.clear();
     history.push('/');
   }
   

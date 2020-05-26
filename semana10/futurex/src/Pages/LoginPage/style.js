@@ -5,6 +5,8 @@ import {
   Button
 } from '@material-ui/core';
 
+export const PageContainer = styled.div`
+`
 export const LoginPageContainer = styled.div`
   display: flex;
   flex-direction: column;

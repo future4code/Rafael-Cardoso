@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
+  PageContainer,
   HomePageContainer,
   FormContainer,
   TripTextField,
@@ -9,6 +10,8 @@ import {
   TripMenuItem,
   SubmitButton
 } from './style';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import axios from 'axios';
 import countryList from 'react-select-country-list';
 
@@ -31,7 +34,7 @@ const HomePage = (props) => {
     .catch(error => {
       console.log(error);
     })
-  }, [])
+  }, [props.aluno])
 
   const submitSubscription = () => {
     const body = {
@@ -58,63 +61,67 @@ const HomePage = (props) => {
   }
 
   return (
-    <HomePageContainer>
-      <h3>Inscreva-se em uma viagem</h3>
-      <FormContainer>
-        <TripFormControl>
-          <TripTextField 
-            value={name}
-            onChange={event => setName(event.target.value)}
-            label={'Nome'}
-          />
-        </TripFormControl>
-        <TripFormControl>
-          <TripTextField 
-            value={age}
-            onChange={event => setAge(event.target.value)}
-            label={'Idade'}
-            type={'number'}
-          />
-        </TripFormControl>
-        <TripFormControl>
-          <TripTextField 
-            value={applicationText}
-            onChange={event => setApplicationText(event.target.value)}
-            label={'Motivação'}
-          />
-        </TripFormControl>
-        <TripFormControl>
-          <TripTextField 
-            value={profession}
-            onChange={event => setProfession(event.target.value)}
-            label={'Profissão'}
-          />
-        </TripFormControl>
-        <TripFormControl>
-          <TripInputLabel>País</TripInputLabel>
-          <TripSelect
-            value={country}
-            onChange={event => setCountry(event.target.value)}
-          >
-            {countries.map(country => {
-              return <TripMenuItem key={country.value} value={country.label} >{country.label}</TripMenuItem>
-            })}
-          </TripSelect>
-        </TripFormControl>
-        <TripFormControl>
-          <TripInputLabel>Viagem</TripInputLabel>
-          <TripSelect
-            value={trip}
-            onChange={event => setTrip(event.target.value)}
-          >
-            {tripsList.map(trip => {
-              return <TripMenuItem key={trip.id} value={trip.id} >{trip.name}</TripMenuItem>
-            })}
-          </TripSelect>
-        </TripFormControl>
-        <SubmitButton onClick={submitSubscription} >Inscrever-se</SubmitButton>
-      </FormContainer>
-    </HomePageContainer>
+    <PageContainer>
+      <Header />
+      <HomePageContainer>
+        <h3>Inscreva-se em uma viagem</h3>
+        <FormContainer>
+          <TripFormControl>
+            <TripTextField 
+              value={name}
+              onChange={event => setName(event.target.value)}
+              label={'Nome'}
+            />
+          </TripFormControl>
+          <TripFormControl>
+            <TripTextField 
+              value={age}
+              onChange={event => setAge(event.target.value)}
+              label={'Idade'}
+              type={'number'}
+            />
+          </TripFormControl>
+          <TripFormControl>
+            <TripTextField 
+              value={applicationText}
+              onChange={event => setApplicationText(event.target.value)}
+              label={'Motivação'}
+            />
+          </TripFormControl>
+          <TripFormControl>
+            <TripTextField 
+              value={profession}
+              onChange={event => setProfession(event.target.value)}
+              label={'Profissão'}
+            />
+          </TripFormControl>
+          <TripFormControl>
+            <TripInputLabel>País</TripInputLabel>
+            <TripSelect
+              value={country}
+              onChange={event => setCountry(event.target.value)}
+            >
+              {countries.map(country => {
+                return <TripMenuItem key={country.value} value={country.label} >{country.label}</TripMenuItem>
+              })}
+            </TripSelect>
+          </TripFormControl>
+          <TripFormControl>
+            <TripInputLabel>Viagem</TripInputLabel>
+            <TripSelect
+              value={trip}
+              onChange={event => setTrip(event.target.value)}
+            >
+              {tripsList.map(trip => {
+                return <TripMenuItem key={trip.id} value={trip.id} >{trip.name}</TripMenuItem>
+              })}
+            </TripSelect>
+          </TripFormControl>
+          <SubmitButton onClick={submitSubscription} >Inscrever-se</SubmitButton>
+        </FormContainer>
+      </HomePageContainer>
+      <Footer />
+    </PageContainer>
   )
 }
 

@@ -8,6 +8,8 @@ import {
   Button
 } from '@material-ui/core';
 
+export const PageContainer = styled.div`
+`
 export const HomePageContainer = styled.div`
   width: 90%;
   margin: 0 auto;

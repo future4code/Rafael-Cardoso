@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import {
+  PageContainer,
   LoginPageContainer,
   FormContainer,
   LoginTextField,
   LoginFormControl,
   LoginButton
 } from './style';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import axios from 'axios';
 
 const LoginPage = (props) => {
@@ -23,8 +26,7 @@ const LoginPage = (props) => {
     }
     axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/${props.aluno}/login`, body)
     .then(response => {
-      props.setToken(response.data.token);
-      props.setLogado(true);
+      window.localStorage.setItem('token', response.data.token);
       history.push('/trips/list');
     })
     .catch(error => {
@@ -34,26 +36,31 @@ const LoginPage = (props) => {
   }
 
   return (
-    <LoginPageContainer>
-      <FormContainer>
-        <LoginFormControl>
-          <LoginTextField 
-            value={email}
-            onChange={event => setEmail(event.target.value)}
-            label={'Email'}
-          />
-        </LoginFormControl>
-        <LoginFormControl>
-          <LoginTextField 
-            value={password}
-            onChange={event => setPassword(event.target.value)}
-            label={'Password'}
-            type={'password'}
-          />
-        </LoginFormControl>
-        <LoginButton onClick={goToPrivateArea} >Entrar</LoginButton>
-      </FormContainer>
-    </LoginPageContainer>
+    <PageContainer>
+      <Header />
+      <LoginPageContainer>
+        <FormContainer>
+          <LoginFormControl>
+            <LoginTextField 
+              value={email}
+              onChange={event => setEmail(event.target.value)}
+              label={'Email'}
+              type='email'
+            />
+          </LoginFormControl>
+          <LoginFormControl>
+            <LoginTextField 
+              value={password}
+              onChange={event => setPassword(event.target.value)}
+              label={'Password'}
+              type='password'
+            />
+          </LoginFormControl>
+          <LoginButton onClick={goToPrivateArea} >Entrar</LoginButton>
+        </FormContainer>
+      </LoginPageContainer>
+      <Footer />
+    </PageContainer>
   )
 }
 

@@ -10,9 +10,11 @@ import {
   HeaderButton
 } from './style';
 
-const Header = (props) => {
+const Header = () => {
 
   const history = useHistory();
+
+  const token = window.localStorage.getItem('token');
 
   const goToHomePage = () => {
     history.push('/');
@@ -21,9 +23,9 @@ const Header = (props) => {
   const goToLoginPage = () => {
     history.push('/login');
   }
-
-  const headerContent = props.logado ? (
-    <NavMenu setLogado={props.setLogado} setToken={props.setToken} />
+  
+  const headerContent = token ? (
+    <NavMenu />
   ) : (
     <HeaderButton onClick={goToLoginPage} >Clique para logar</HeaderButton>
   )

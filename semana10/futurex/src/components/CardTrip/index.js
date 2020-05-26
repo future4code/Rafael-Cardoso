@@ -1,10 +1,14 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import {
-  CardTripContainer
+  CardTripContainer,
+  Titulo,
+  Paragrafo
 } from './style';
 
 const CardTrip = (props) => {
+
+  const { name, planet, description, date, durationInDays } = props.trip;
 
   const history = useHistory();
 
@@ -14,7 +18,11 @@ const CardTrip = (props) => {
   
   return (
     <CardTripContainer onClick={() => goToTripDetail(props.trip.id)} >
-      CardTrip
+      <Titulo>{name}</Titulo>
+      <Paragrafo>{description}</Paragrafo>
+      <Paragrafo>Planeta: {planet}</Paragrafo>
+      <Paragrafo>Data de lançamento: {date}</Paragrafo>
+      <Paragrafo>Duração: {durationInDays} (dias)</Paragrafo>
     </CardTripContainer>
   )
 }

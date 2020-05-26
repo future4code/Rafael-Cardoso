@@ -13,11 +13,12 @@ import {
 } from '@material-ui/pickers';
 
 export const FilterBarContainer = styled.div`
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1em 0;
 `
 export const FilterContainer = styled.div`
   display: flex;

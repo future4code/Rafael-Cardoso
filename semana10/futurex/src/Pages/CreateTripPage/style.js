@@ -12,6 +12,8 @@ import {
   MuiPickersUtilsProvider
 } from '@material-ui/pickers';
 
+export const PageContainer = styled.div`
+`
 export const CreateTripPageContainer = styled.div`
   width: 90%;
   margin: 0 auto;

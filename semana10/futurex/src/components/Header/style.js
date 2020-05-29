@@ -13,9 +13,11 @@ export const HeaderSubContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 `
-export const HeaderContentContainer = styled.div``
+export const HeaderContentContainer = styled.div`
+`
 export const Image = styled.img`
   height: 100px;
   width: auto;
 `
-export const HeaderButton = styled(Button)``
+export const HeaderButton = styled(Button)`
+`

@@ -17,7 +17,7 @@ const NavMenu = () => {
     history.push('/trips/create');
   }
 
-  const logingOut = () => {
+  const logOut = () => {
     window.localStorage.clear();
     history.push('/');
   }
@@ -26,7 +26,7 @@ const NavMenu = () => {
     <NavMenuContainer>
       <MenuButton onClick={goToListTripsPage} >Lista de viagens</MenuButton>
       <MenuButton onClick={goToCreateTripPage} >Crie uma viagem</MenuButton>
-      <MenuButton onClick={logingOut} >Deslogar</MenuButton>
+      <MenuButton onClick={logOut} >Logout</MenuButton>
     </NavMenuContainer>
   )
 }

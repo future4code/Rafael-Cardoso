@@ -2,27 +2,27 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import {
   CardTripContainer,
-  Titulo,
-  Paragrafo
+  TripTitle,
+  TripParagraph
 } from './style';
 
 const CardTrip = (props) => {
 
-  const { name, planet, description, date, durationInDays } = props.trip;
+  const { name, planet, description, date, durationInDays, id } = props.trip;
 
   const history = useHistory();
 
-  const goToTripDetail = (id) => {
-    history.push(`/trips/details/${id}`);
+  const goToTripDetail = (tripId) => {
+    history.push(`/trips/details/${tripId}`);
   }
   
   return (
-    <CardTripContainer onClick={() => goToTripDetail(props.trip.id)} >
-      <Titulo>{name}</Titulo>
-      <Paragrafo>{description}</Paragrafo>
-      <Paragrafo>Planeta: {planet}</Paragrafo>
-      <Paragrafo>Data de lançamento: {date}</Paragrafo>
-      <Paragrafo>Duração: {durationInDays} (dias)</Paragrafo>
+    <CardTripContainer onClick={() => goToTripDetail(id)} >
+      <TripTitle>{name}</TripTitle>
+      <TripParagraph>{description}</TripParagraph>
+      <TripParagraph>Planeta: {planet}</TripParagraph>
+      <TripParagraph>Data de lançamento: {date}</TripParagraph>
+      <TripParagraph>Duração: {durationInDays} (dias)</TripParagraph>
     </CardTripContainer>
   )
 }

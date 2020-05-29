@@ -5,8 +5,6 @@ import {
   CreateFormContainer,
   CreateFormControl,
   CreateTextField,
-  CreateInputLabel, 
-  CreateSelect,
   CreateMenuItem,
   CreateDatePicker,
   CreateProvider,
@@ -16,19 +14,31 @@ import DateFnsUtils from '@date-io/date-fns';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { usePrivatePage } from '../../hooks/usePrivatePage';
+import { useForm } from '../../hooks/useForm';
 import axios from 'axios';
 
 const CreateTripPage = (props) => {
 
   usePrivatePage()
 
-  const [name, setName] = useState('');
-  const [planet, setPlanet] = useState('');
   const [date, setDate] = useState(Date());
-  const [description, setDescription] = useState('');
-  const [duration, setDuration] = useState('');
 
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  const { form, onChange, resetForm } = useForm({
+    name: '',
+    planet: '',
+    description: '',
+    duration: ''
+  })
+  
+  const { name, planet, description, duration } = form;
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    onChange(name, value);
+  }
 
   const formatDate = (date) => {
     const array = date.toString().split(' ');
@@ -46,14 +56,15 @@ const CreateTripPage = (props) => {
     return `${day}/${month}/${year}`
   }
 
-  const submitSubscription = () => {
+  const submitSubscription = (event) => {
+    event.preventDefault();
     const token = window.localStorage.getItem('token');
     const body = {
       'name': name,
       'planet': planet,
       'date': formatDate(date),
       'description': description,
-      'duration': Number(duration)
+      'durationInDays': Number(duration)
     }
     axios.post(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/${props.aluno}/trips`, body, {
       headers: {
@@ -62,6 +73,8 @@ const CreateTripPage = (props) => {
     })
     .then(response => {
       console.log(response.data);
+      resetForm();
+      setDate(Date());
     })
     .catch(error => {
       console.log(error);
@@ -73,49 +86,65 @@ const CreateTripPage = (props) => {
       <Header />
       <CreateTripPageContainer>
         <h3>Crie uma viagem</h3>
-        <CreateFormContainer>
+        <CreateFormContainer onSubmit={submitSubscription} >
           <CreateFormControl>
             <CreateTextField
+              name='name'
               value={name}
-              onChange={event => setName(event.target.value)}
+              onChange={handleInputChange}
               label={'Nome'}
+              inputProps={{ pattern: '[a-zA-Z\u00C0-\u017F ]{5,}', title: 'Mínimo 5 caracteres' }}
+              required
             />
           </CreateFormControl>
           <CreateFormControl>
-            <CreateInputLabel>Planeta</CreateInputLabel>
-            <CreateSelect
+            <CreateTextField
+              select
+              name='planet'
               value={planet}
-              onChange={event => setPlanet(event.target.value)}
+              onChange={handleInputChange}
+              label={'Planeta'}
+              required
             >
               {props.planets.map((planet, idx) => {
                 return <CreateMenuItem key={idx} value={planet} >{planet}</CreateMenuItem>
               })}
-            </CreateSelect>
+            </CreateTextField>
           </CreateFormControl>
-          <CreateProvider utils={DateFnsUtils}>
-            <CreateDatePicker 
-              value={date}
-              onChange={setDate}
-              label={'Data'}
-              format='dd/MM/yy'
-            />
-          </CreateProvider>
+          <CreateFormControl>
+            <CreateProvider utils={DateFnsUtils}>
+              <CreateDatePicker 
+                name='date'
+                value={date}
+                onChange={setDate}
+                label={'Data'}
+                format='dd/MM/yy'
+                minDate={Date()}
+              />
+            </CreateProvider>
+          </CreateFormControl>
           <CreateFormControl>
             <CreateTextField
+              name='description'
               value={description}
-              onChange={event => setDescription(event.target.value)}
+              onChange={handleInputChange}
               label={'Descrição'}
+              inputProps={{ pattern: '[A-Za-z\u00C0-\u017F ,.!]{30,}', title: 'Mínimo 30 caracteres' }}
+              required
             />
           </CreateFormControl>
           <CreateFormControl>
             <CreateTextField
+              name='duration'
               value={duration}
-              onChange={event => setDuration(event.target.value)}
+              onChange={handleInputChange}
               label={'Duração (em dias)'}
               type='number'
+              inputProps={{ min: 50, title: 'Mínimo 50 dias' }}
+              required
             />
           </CreateFormControl>
-          <CreateSubmitButton onClick={submitSubscription} >Cadastrar</CreateSubmitButton>
+          <CreateSubmitButton type='submit' >Cadastrar</CreateSubmitButton>
         </CreateFormContainer>
       </CreateTripPageContainer>
       <Footer />

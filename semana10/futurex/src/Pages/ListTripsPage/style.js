@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import {
-  //
-} from '@material-ui/core';
 
 export const PageContainer = styled.div`
 `
 export const ListTripsPageContainer = styled.div`
+  padding: 1em 0;
+  min-height: 420px;
   width: 90%;
   margin: 0 auto;
 `

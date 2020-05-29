@@ -9,6 +9,7 @@ import {
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { usePrivatePage } from '../../hooks/usePrivatePage';
+import { useForm } from '../../hooks/useForm';
 import axios from 'axios';
 
 const ListTripsPage = (props) => {
@@ -16,18 +17,31 @@ const ListTripsPage = (props) => {
   usePrivatePage();
 
   const [tripsList, setTripsList] = useState([]);
-  const [nameInput, setNameInput] = useState('');
-  const [planetInput, setPlanetInput] = useState('');
-  const [initialDateInput, setInitialDateInput] = useState(null);
-  const [finalDateInput, setFinalDateInput] = useState(null);
-  const [minDurationInput, setMinDurationInput] = useState('');
-  const [maxDurationInput, setMaxDurationInput] = useState('');
-  const [sortInput, setSortInput] = useState('');
+  const [initialDate, setInitialDate] = useState(null);
+  const [finalDate, setFinalDate] = useState(null);
+  const [sort, setSort] = useState('');
   const [filteredList, setFilteredList] = useState([]);
   const [filtered, setFiltered] = useState(false);
 
-  const arrayProps = [nameInput, planetInput, initialDateInput, finalDateInput, minDurationInput, maxDurationInput, sortInput]
-  const arraySetProps = [setNameInput, setPlanetInput, setInitialDateInput, setFinalDateInput, setMinDurationInput, setMaxDurationInput];
+  const { form, onChange, resetForm } = useForm({
+    name: '',
+    planet: '',
+    minDuration: '',
+    maxDuration: '',
+    sort: ''
+  })
+
+  const { name, planet, minDuration, maxDuration } = form;
+  
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+
+    onChange(name, value);
+  }
+
+  const arrayInputs = [form, initialDate, finalDate, sort];
+  
+  const arraySetInputs = [handleInputChange, setInitialDate, setFinalDate];
 
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -44,7 +58,7 @@ const ListTripsPage = (props) => {
   useEffect(() => {
     setFiltered(true);
     setFilteredList(filterList());
-  }, [tripsList, nameInput, planetInput, initialDateInput, finalDateInput, minDurationInput, maxDurationInput]);
+  }, [tripsList, name, planet, initialDate, finalDate, minDuration, maxDuration]);
 
   const formatDate = (date) => {
     const arrayDate = date.split('/');
@@ -53,53 +67,44 @@ const ListTripsPage = (props) => {
 
   const filterList = () => {
     let filteredList = tripsList;
-    if (nameInput) {
+    if (name) {
       filteredList = filteredList.filter((trip) => {
         return (
-          trip.name.toLowerCase().includes(nameInput.toLowerCase()) || 
-          trip.description.toLowerCase().includes(nameInput.toLowerCase())
+          trip.name.toLowerCase().includes(name.toLowerCase()) || 
+          trip.description.toLowerCase().includes(name.toLowerCase())
         );
       });
     }
-    if (planetInput) {
+    if (planet) {
       filteredList = filteredList.filter(trip => {
-        return trip.planet === planetInput;
+        return trip.planet === planet;
       });
     }
-    if (minDurationInput) {
+    if (minDuration) {
       filteredList = filteredList.filter(trip => {
-        return Number(trip.durationInDays) >= Number(minDurationInput);
+        return Number(trip.durationInDays) >= Number(minDuration);
       });
     }
-    if (maxDurationInput) {
+    if (maxDuration) {
       filteredList = filteredList.filter(trip => {
-        return Number(trip.durationInDays) <= Number(maxDurationInput);
+        return Number(trip.durationInDays) <= Number(maxDuration);
       });
     }
-    if (initialDateInput) {
+    if (initialDate) {
       filteredList = filteredList.filter(trip => {
-        return Date.parse(formatDate(trip.date)) >= initialDateInput;
+        return Date.parse(formatDate(trip.date)) >= initialDate;
       });
     }
-    if (finalDateInput) {
+    if (finalDate) {
       filteredList = filteredList.filter(trip => {
-        return Date.parse(formatDate(trip.date)) <= finalDateInput;
+        return Date.parse(formatDate(trip.date)) <= finalDate;
       });
     }
     return filteredList;
   }
 
-  const cleanFilters = () => {
-    setNameInput('');
-    setPlanetInput('');
-    setInitialDateInput(null);
-    setFinalDateInput(null);
-    setMinDurationInput('');
-    setMaxDurationInput('');
-  }
-
   const sortList = (event) => {
-    setSortInput(event.target.value);
+    setSort(event.target.value)
     let newList = tripsList;
     if (event.target.value === 'Nome') {
       newList = [].concat(tripsList).sort((a, b) => {
@@ -127,10 +132,10 @@ const ListTripsPage = (props) => {
       <ListTripsPageContainer>
         <Filter 
           planets={props.planets}
-          inputs={arrayProps}
-          setInputs={arraySetProps}
+          inputs={arrayInputs}
+          setInputs={arraySetInputs}
           sortList={sortList}
-          cleanFilters={cleanFilters}
+          resetForm={resetForm}
         />
         <ListTripsContainer>
           {(filtered ? filteredList : tripsList).map(trip => {

@@ -32,6 +32,9 @@ export const FilterDurationTextField = styled(TextField)`
   width: 70px;
 `
 export const FilterFormControl = styled(FormControl)`
+  &&{
+    margin-right: .5em;
+  }
 `
 export const FilterInputLabel = styled(InputLabel)`
 `

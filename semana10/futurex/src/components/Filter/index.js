@@ -17,24 +17,27 @@ import DateFnsUtils from '@date-io/date-fns';
 
 const Filter = (props) => {
 
-  const [name, planet, initialDate, finalDate, minDuration, maxDuration, sort] = props.inputs;
-  const [setName, setPlanet, setInitialDate, setFinalDate, setMinDuration, setMaxDuration] = props.setInputs;
+  const [form, initialDate, finalDate, sort] = props.inputs
+  const { name, planet, minDuration, maxDuration } = form;
+  const [handleInputChange, setInitialDate, setFinalDate] = props.setInputs;
   
   return (
     <FilterBarContainer>
       <FilterContainer>
         <FilterFormControl>
           <FilterTextField 
+            name='name'
             value={name}
-            onChange={event => setName(event.target.value)}
+            onChange={handleInputChange}
             label={'Nome ou descrição'}
           />
         </FilterFormControl>
         <FilterFormControl>
           <FilterInputLabel>Planeta</FilterInputLabel>
           <FilterSelect
+            name='planet'
             value={planet}
-            onChange={event => setPlanet(event.target.value)}
+            onChange={handleInputChange}
           >
             <FilterMenuItem key={0} value={''} > </FilterMenuItem>
             {props.planets.map((planet, idx) => {
@@ -44,6 +47,7 @@ const Filter = (props) => {
         </FilterFormControl>
         <FilterProvider utils={DateFnsUtils}>
           <FilterDatePicker 
+            name='initialDate'
             value={initialDate}
             onChange={setInitialDate}
             label={'Data de início'}
@@ -53,6 +57,7 @@ const Filter = (props) => {
         </FilterProvider>
         <FilterProvider utils={DateFnsUtils}>
           <FilterDatePicker 
+            name='finalDate'
             value={finalDate}
             onChange={setFinalDate}
             label={'Data de término'}
@@ -62,21 +67,23 @@ const Filter = (props) => {
         </FilterProvider>
         <FilterFormControl>
           <FilterDurationTextField 
+            name='minDuration'
             value={minDuration}
-            onChange={event => setMinDuration(event.target.value)}
+            onChange={handleInputChange}
             label={'Duração mínima'}
             InputLabelProps={{ shrink: true }}
           />
         </FilterFormControl>
         <FilterFormControl>
           <FilterDurationTextField 
+            name='maxDuration'
             value={maxDuration}
-            onChange={event => setMaxDuration(event.target.value)}
+            onChange={handleInputChange}
             label={'Duração máxima'}
             InputLabelProps={{ shrink: true }}
           />
         </FilterFormControl>
-        <FilterButton onClick={props.cleanFilters} >Apagar Filtros</FilterButton>
+        <FilterButton onClick={props.resetForm} >Apagar Filtros</FilterButton>
       </FilterContainer>
       <SortContainer>
       <FilterFormControl>

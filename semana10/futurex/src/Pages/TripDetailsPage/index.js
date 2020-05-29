@@ -4,11 +4,15 @@ import {
   PageContainer,
   TripDetailsPageContainer,
   DetailsContainer,
-  CandidatesContainer
+  CandidatesContainer,
+  TripTitle,
+  TripParagraph,
+  ApprovedList
 } from './style';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import CandidateDetail from '../../components/CandidateDetail';
+import ApprovedCandidate from '../../components/ApprovedCandidate';
 import { usePrivatePage } from '../../hooks/usePrivatePage';
 import axios from 'axios';
 
@@ -18,7 +22,9 @@ const TripDetailsPage = (props) => {
 
   const [tripDetail, setTripDetail] = useState({});
 
-  const { id, name, description, planet, date, durationInDays, candidates } = tripDetail;
+  const [decide, setDecide] = useState(false);
+
+  const { id, name, description, planet, date, durationInDays, candidates, approved } = tripDetail;
   
   const pathParams = useParams();
 
@@ -37,24 +43,42 @@ const TripDetailsPage = (props) => {
     .catch(error => {
       console.log(error);
     })
-  }, [setTripDetail, pathParams, props.aluno]);
-
-  // const 
+  }, [decide, setTripDetail, pathParams, props.aluno]);
 
   return (
     <PageContainer>
       <Header />
       <TripDetailsPageContainer>
         <DetailsContainer>
-          <h3>{name}</h3>
-          <p>{description}</p>
-          <p>Planeta: {planet}</p>
-          <p>Data de lançamento: {date}</p>
-          <p>Duração: {durationInDays} dias</p>
+          <TripTitle>{name}</TripTitle>
+          <TripParagraph>{description}</TripParagraph>
+          <TripParagraph>Planeta: {planet}</TripParagraph>
+          <TripParagraph>Data de lançamento: {date}</TripParagraph>
+          <TripParagraph>Duração: {durationInDays} dias</TripParagraph>
+          <ApprovedList>Candidatos aprovados:
+            {(approved || []).map((person, idx) => {
+              return (
+                <ApprovedCandidate
+                  key={idx} 
+                  person={person}
+                />
+              )
+            })}
+          </ApprovedList>
         </DetailsContainer>
         <CandidatesContainer>
-          {(candidates || []).map(candidate => {
-            return <CandidateDetail key={id} tripId={id} candidate={candidate} />
+          <TripTitle>Candidatos para viagem:</TripTitle>
+          {(candidates || []).map((candidate, idx) => {
+            return (
+              <CandidateDetail 
+                key={idx} 
+                tripId={id} 
+                candidate={candidate} 
+                aluno={props.aluno} 
+                decide={decide}
+                setDecide={setDecide} 
+              />
+            )
           })}
         </CandidatesContainer>
       </TripDetailsPageContainer>

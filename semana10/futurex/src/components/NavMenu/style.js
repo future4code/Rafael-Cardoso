@@ -6,4 +6,5 @@ import {
 export const NavMenuContainer = styled.div`
   display: flex;
 `
-export const MenuButton = styled(Button)``
+export const MenuButton = styled(Button)`
+`

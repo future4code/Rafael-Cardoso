@@ -27,7 +27,7 @@ const Header = () => {
   const headerContent = token ? (
     <NavMenu />
   ) : (
-    <HeaderButton onClick={goToLoginPage} >Clique para logar</HeaderButton>
+    <HeaderButton onClick={goToLoginPage} >Login</HeaderButton>
   )
   
   return (

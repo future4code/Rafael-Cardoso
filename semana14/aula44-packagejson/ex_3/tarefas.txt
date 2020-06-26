@@ -1,0 +1,1 @@
+["Comprar pão","Fazer faxina","Tirar o lixo"]

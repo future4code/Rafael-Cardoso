@@ -42,9 +42,9 @@ export class Bank {
   }
 
   public getAccountByCpfAndName = (cpf: string, name: string):UserAccount|undefined => {
-    const accounts:UserAccount[] = this.getAllAccounts().map((item:any) => new UserAccount(item.cpf, item.name, item.age));
-    const accountToReturn:UserAccount[] = accounts.filter((item:UserAccount) => (
-      item.getCpf() === cpf && item.getName() === name
+    const accounts:UserAccount[] = this.getAllAccounts();
+    const accountToReturn:UserAccount[] = accounts.filter((item:any) => (
+      item.cpf === cpf && item.name === name
     ))
     if (accountToReturn.length === 0) {
       console.log('Não foi encontrada nenhuma conta com esses dados, favor verifique se eles estão corretos.')
@@ -54,18 +54,34 @@ export class Bank {
   }
 
   public addBalanceToAccount = (cpf:string, name:string, value:number):void => {
-    const accounts:UserAccount[] = this.getAllAccounts().map((item:any) => new UserAccount(item.cpf, item.name, item.age));
+    const accounts:object[] = this.getAllAccounts();
     const account:UserAccount|undefined = this.getAccountByCpfAndName(cpf, name);
     if (account === undefined) {
       return;
     }
     const updatedAccount:UserAccount = account.addBalance(value);
-    const accountsToSave:UserAccount[] = accounts.map((item:UserAccount) => {
-      if (item.getCpf() === cpf) {
+    const accountsToSave:object[] = accounts.map((item:any) => {
+      if (item.cpf === cpf) {
         return updatedAccount;
       }
       return item;
     });
     this.fileManager.writeObjectToFile(accountsToSave);
+  }
+
+  public addBillToAccount = (cpf:string, name:string, value: number, description:string):void => {
+    const accounts:object[] = this.getAllAccounts();
+    const account:UserAccount|undefined = this.getAccountByCpfAndName(cpf, name);
+    if (account === undefined) {
+      return;
+    }
+    const updatedAccount:object = account.payBill(value, description);
+    const accountsToSave:object[] = accounts.map((item:any) => {
+      if (item.cpf === cpf) {
+        return updatedAccount;
+      }
+      return item;
+    });
+    // console.log(accountsToSave);
   }
 }

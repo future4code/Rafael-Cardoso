@@ -42,4 +42,12 @@ export class UserAccount {
     console.log('Saldo atualizado com sucesso');
     return this;
   }
+
+  public payBill(value:number, description:string):UserAccount {
+    const newTransaction = new Transaction(moment().format('DD/MM/YYYY'), -value, description);
+    this.transactions.push(newTransaction);
+    console.log(this.transactions);
+    console.log('Conta incluída para ser paga com sucesso!');
+    return this;
+  }
 }

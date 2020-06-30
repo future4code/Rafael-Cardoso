@@ -1,3 +1,4 @@
+import * as moment from 'moment';
 import { UserAccount } from './UserAccount';
 import { JSONFileManager } from './JSONFileManager';
 
@@ -10,8 +11,12 @@ export class Bank {
     this.fileManager = fileManager;
   }
 
+  public getAllAccounts = ():UserAccount[] => {
+    return this.accounts;
+  }
+
   public createAccount = (userAccount: UserAccount): void => {
-    const accounts:any[] = this.getAllAccounts().map((item:any) => new UserAccount(item.cpf, item.name, item.age));
+    const accounts:any[] = this.getAllAccounts();
     const foundCpf = accounts.find((item:UserAccount) => {
       return item.getCpf() === userAccount.getCpf();
     })
@@ -28,12 +33,8 @@ export class Bank {
     console.log('Conta criada com sucesso.');
   }
 
-  public getAllAccounts = ():UserAccount[] => {
-    return this.fileManager.getObjectFromFile();
-  }
-
   public pressAllAccounts = ():void => {
-    const accounts:UserAccount[] = this.getAllAccounts().map((item:any) => new UserAccount(item.cpf, item.name, item.age));
+    const accounts:UserAccount[] = this.getAllAccounts();
     accounts.forEach((item:any) => {
       console.log(`Nome: ${item.getName()}`);
       console.log(`CPF: ${item.getCpf()}`);
@@ -43,8 +44,8 @@ export class Bank {
 
   public getAccountByCpfAndName = (cpf: string, name: string):UserAccount|undefined => {
     const accounts:UserAccount[] = this.getAllAccounts();
-    const accountToReturn:UserAccount[] = accounts.filter((item:any) => (
-      item.cpf === cpf && item.name === name
+    const accountToReturn:UserAccount[] = accounts.filter((item:UserAccount) => (
+      item.getCpf() === cpf && item.getName() === name
     ))
     if (accountToReturn.length === 0) {
       console.log('Não foi encontrada nenhuma conta com esses dados, favor verifique se eles estão corretos.')
@@ -53,35 +54,53 @@ export class Bank {
     return accountToReturn[0];
   }
 
-  public addBalanceToAccount = (cpf:string, name:string, value:number):void => {
-    const accounts:object[] = this.getAllAccounts();
-    const account:UserAccount|undefined = this.getAccountByCpfAndName(cpf, name);
-    if (account === undefined) {
-      return;
-    }
-    const updatedAccount:UserAccount = account.addBalance(value);
-    const accountsToSave:object[] = accounts.map((item:any) => {
-      if (item.cpf === cpf) {
-        return updatedAccount;
-      }
-      return item;
-    });
-    this.fileManager.writeObjectToFile(accountsToSave);
+  public updateAccountsBalance = ():void => {
+    this.accounts.forEach((item:UserAccount) => {
+      item.updateBalance();
+    })
+    console.log('OS saldos estão atualizados');
   }
 
-  public addBillToAccount = (cpf:string, name:string, value: number, description:string):void => {
+  public addBalanceToAccount = (cpf:string, name:string, value:number):void => {
+    const accounts:UserAccount[] = this.getAllAccounts();
+    const account:UserAccount|undefined = this.getAccountByCpfAndName(cpf, name);
+    if (account === undefined) {
+      return;
+    }
+    account.addBalance(value);
+    this.updateAccountsBalance();
+    this.fileManager.writeObjectToFile(accounts);
+    console.log('Depósito realizado com sucesso.');
+  }
+
+  public addBillToAccount = (cpf:string, name:string, value: number, description:string, dateToPay?:string):void => {
     const accounts:object[] = this.getAllAccounts();
     const account:UserAccount|undefined = this.getAccountByCpfAndName(cpf, name);
     if (account === undefined) {
       return;
     }
-    const updatedAccount:object = account.payBill(value, description);
-    const accountsToSave:object[] = accounts.map((item:any) => {
-      if (item.cpf === cpf) {
-        return updatedAccount;
-      }
-      return item;
-    });
-    // console.log(accountsToSave);
+    const date = dateToPay || moment().format('DD/MM/YYYY');
+    account.payBill(value, description, date);
+    this.updateAccountsBalance();
+    this.fileManager.writeObjectToFile(accounts);
+    console.log('Conta incluída para ser paga com sucesso.');
+  }
+
+  public performTransfer = (senderCpf:string, senderName:string, receiverCpf:string, receiverName:string, value:number):void => {
+    const accounts:UserAccount[] = this.getAllAccounts();
+    const senderAccount:UserAccount|undefined = this.getAccountByCpfAndName(senderCpf, senderName);
+    const receiverAccount:UserAccount|undefined = this.getAccountByCpfAndName(receiverCpf, receiverName);
+    if (senderAccount === undefined || receiverAccount === undefined) {
+      return;
+    }
+    if (senderAccount.getBalance() < value) {
+      console.log('O emissor deve ter saldo maior que o valor desejado.');
+      return;
+    }
+    senderAccount.payBill(value, 'Transferência de dinheiro enviado', moment().format('DD/MM/YYYY'));
+    receiverAccount.addBalance(value, true);
+    this.updateAccountsBalance();
+    this.fileManager.writeObjectToFile(accounts);
+    console.log('Transferência realizada com sucesso.');
   }
 }

@@ -18,36 +18,49 @@ export class UserAccount {
     this.age = age;
   }
 
-  public getBalance():number {
+  public getBalance = ():number => {
     return this.balance;
   }
 
-  public getAge():number {
+  public getAge = ():number => {
     return this.age;
   }
 
-  public getCpf():string {
+  public getCpf = ():string => {
     return this.cpf;
   }
 
-  public getName():string {
+  public getName = ():string => {
     return this.name;
   }
 
-  public addBalance(value:number, isTransfer?:boolean):UserAccount {
+  public addBalance = (value:number, isTransfer?:boolean):void => {
     const description = isTransfer ? 'Transferência de dinheiro recebida' : 'Depósito de dinheiro';
     const newTransaction = new Transaction(moment().format('DD/MM/YYYY'), value, description);
     this.transactions.push(newTransaction);
     this.balance += value;
-    console.log('Saldo atualizado com sucesso');
-    return this;
   }
 
-  public payBill(value:number, description:string):UserAccount {
-    const newTransaction = new Transaction(moment().format('DD/MM/YYYY'), -value, description);
+  public payBill = (value:number, description:string, date:string):void => {
+    if (value > this.balance) {
+      console.log('Não pode ser paga uma conta maior que seu saldo atual');
+      return
+    }
+    if (moment(date, 'DD/MM/YYYY').diff(moment(), 'days') < 0) {
+      console.log('Não é possível definir uma data anterior ao dia de hoje');
+      return
+    }
+    const newTransaction = new Transaction(date, -value, description);
     this.transactions.push(newTransaction);
-    console.log(this.transactions);
-    console.log('Conta incluída para ser paga com sucesso!');
-    return this;
+  }
+
+  public updateBalance = ():void => {
+    let actualBalance:number = 0;
+    this.transactions.forEach((item:Transaction) => {
+      if (moment(item.getDate(), 'DD/MM/YYYY').diff(moment(), 'days') <= 0) {
+        actualBalance += item.getValue();
+      }
+    })
+    this.balance = actualBalance;
   }
 }

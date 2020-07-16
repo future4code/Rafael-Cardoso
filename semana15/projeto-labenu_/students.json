@@ -1,0 +1,22 @@
+[
+  {
+    "id": "S0001",
+    "name": "Juquinha",
+    "email": "juquinha@bol.com",
+    "birthDate": "1995-07-25T03:00:00.000Z",
+    "hobbies": [
+      "Jogar bola",
+      "Ler"
+    ]
+  },
+  {
+    "id": "S0002",
+    "name": "Chiquinha",
+    "email": "chiquinha@bol.com",
+    "birthDate": "1992-10-13T03:00:00.000Z",
+    "hobbies": [
+      "Jogar video game",
+      "Marcenaria"
+    ]
+  }
+]

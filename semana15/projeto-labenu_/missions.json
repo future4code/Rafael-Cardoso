@@ -1,0 +1,83 @@
+[
+  {
+    "id": "M001",
+    "startDate": "2020-03-16T03:00:00.000Z",
+    "endDate": "0020-09-04T03:06:28.000Z",
+    "currentModule": 4,
+    "teachers": [
+      {
+        "id": "T001",
+        "name": "José",
+        "email": "jose@bol.com",
+        "birthDate": "1990-01-01T02:00:00.000Z",
+        "specialties": [
+          "REACT",
+          "REDUX"
+        ]
+      },
+      {
+        "id": "T002",
+        "name": "Maria",
+        "email": "maria@bol.com",
+        "birthDate": "1989-02-12T03:00:00.000Z",
+        "specialties": [
+          "TYPESCRIPT",
+          "OOP"
+        ]
+      }
+    ],
+    "students": [
+      {
+        "id": "S0002",
+        "name": "Chiquinha",
+        "email": "chiquinha@bol.com",
+        "birthDate": "1992-10-13T03:00:00.000Z",
+        "hobbies": [
+          "Jogar video game",
+          "Marcenaria"
+        ]
+      }
+    ],
+    "name": "Primerona"
+  },
+  {
+    "id": "M002",
+    "startDate": "2020-03-16T03:00:00.000Z",
+    "endDate": "0020-10-02T03:06:28.000Z",
+    "currentModule": 3,
+    "teachers": [
+      {
+        "id": "T003",
+        "name": "Tony",
+        "email": "tony@bol.com",
+        "birthDate": "1991-09-30T03:00:00.000Z",
+        "specialties": [
+          "BACKEND"
+        ]
+      },
+      {
+        "id": "T004",
+        "name": "Joana",
+        "email": "joana@bol.com",
+        "birthDate": "1997-02-04T02:00:00.000Z",
+        "specialties": [
+          "TESTES",
+          "CSS"
+        ]
+      }
+    ],
+    "students": [
+      {
+        "id": "S0001",
+        "name": "Juquinha",
+        "email": "juquinha@bol.com",
+        "birthDate": "1995-07-25T03:00:00.000Z",
+        "hobbies": [
+          "Jogar bola",
+          "Ler"
+        ]
+      }
+    ],
+    "name": "Primerona-na-night"
+  }
+]

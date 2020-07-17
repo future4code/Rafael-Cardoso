@@ -38,7 +38,7 @@ app.post('/signup', async (req:Request, res:Response) => {
       throw new Error('Insert a valid password');
     }
     const id = idGenerator.generateId();
-    const hashPassword = await hashManager.hash(id);
+    const hashPassword = await hashManager.hash(password);
     await userDb.createUser(id, name, email, hashPassword, role);
     const token = authenticator.generateToken({ id, role });
 
@@ -57,7 +57,7 @@ app.post('/login', async (req:Request, res:Response) => {
       throw new Error('Insert a valid email');
     }
     const user = await userDb.getUserByEmail(email);
-    const isPasswordCorrect = hashManager.compare(password, user.password);
+    const isPasswordCorrect = await hashManager.compare(password, user.password);
     if (!isPasswordCorrect) {
       throw new Error('Invalid password');
     }

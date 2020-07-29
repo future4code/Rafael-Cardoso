@@ -1,0 +1,19 @@
+{
+  "name": "projeto-f4bank",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node ./build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rafael Cardoso",
+  "license": "ISC",
+  "dependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/node": "^14.0.14",
+    "axios": "^0.19.2",
+    "moment": "^2.27.0",
+    "typescript": "^3.9.5"
+  }
+}

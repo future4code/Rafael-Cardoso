@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Ela",
+    "cpf": "211111111-11",
+    "birthDate": "01/01/2002",
+    "balance": 30,
+    "transactions": [
+      {
+        "value": 50,
+        "date": "26/06/2020",
+        "description": "Depósito de dinheiro"
+      },
+      {
+        "value": -10,
+        "date": "26/06/2020",
+        "description": "Cartão"
+      },
+      {
+        "value": -10,
+        "date": "26/06/2020",
+        "description": "Lanche"
+      }
+    ]
+  },
+  {
+    "name": "Eu",
+    "cpf": "111111111-11",
+    "birthDate": "01/01/2001",
+    "balance": 180,
+    "transactions": [
+      {
+        "value": 100,
+        "date": "26/06/2020",
+        "description": "Depósito de dinheiro"
+      },
+      {
+        "value": -20,
+        "date": "01/07/2020",
+        "description": "Cartão"
+      },
+      {
+        "value": 100,
+        "date": "26/06/2020",
+        "description": "Depósito de dinheiro"
+      },
+      {
+        "value": -20,
+        "date": "26/06/2020",
+        "description": "Transferência de dinheiro enviado"
+      }
+    ]
+  },
+  {
+    "name": "Ele",
+    "cpf": "111111111-22",
+    "birthDate": "01/01/2000",
+    "balance": 20,
+    "transactions": [
+      {
+        "value": 20,
+        "date": "26/06/2020",
+        "description": "Transferência de dinheiro recebido"
+      }
+    ]
+  }
+]

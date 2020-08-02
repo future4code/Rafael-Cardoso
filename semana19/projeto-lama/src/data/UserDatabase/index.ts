@@ -35,4 +35,16 @@ export class UserDatabase extends BaseDatabase {
       throw new InternalServerError(error.sqlMessage || error.message);
     }
   }
+
+  public getUserById = async (id:string):Promise<User> => {
+    try {
+      const result = await this.getConnection()
+        .select('*')
+        .from(UserDatabase.TABLE_NAME)
+        .where({ id });
+      return User.toUserModel(result[0]);
+    } catch (error) {
+      throw new InternalServerError(error.sqlMessage || error.message);
+    }
+  }
 }

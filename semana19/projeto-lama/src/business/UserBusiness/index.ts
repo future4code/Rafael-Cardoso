@@ -4,7 +4,7 @@ import { HashManager } from "../../service/HashManager";
 import { UserDatabase } from "../../data/UserDatabase";
 import { RefreshTokenDatabase } from "../../data/RefreshTokenDatabase";
 import { User, stringToUserRole, LoginInputDTO, SignUpInputDTO } from '../../model/User';
-import { RefreshToken, TokenResponseDTO } from "../../model/RefreshToken";
+import { RefreshToken, TokenResponseDTO, RefreshTokenInputDTO } from "../../model/RefreshToken";
 
 import { InvalidParameterError } from "../../error/InvalidParameterError";
 import { NotFoundError } from "../../error/NotFoundError";
@@ -95,5 +95,29 @@ export class UserBusiness {
     }));
 
     return { accessToken, refreshToken };
+  }
+
+  public getAccessTokenByRefreshToken = async (input:RefreshTokenInputDTO):Promise<TokenResponseDTO> => {
+    const { refreshToken, device } = input;
+
+    if (!refreshToken || !device) {
+      throw new InvalidParameterError('Missing parameters');
+    }
+
+    const refreshTokenData = this.authenticator.getData(refreshToken);
+    if (refreshTokenData.device !== device) { 
+      throw new InvalidParameterError('Refresh token has no device');
+    }
+
+    const user = await this.userDatabase.getUserById(refreshTokenData.id);
+    if (!user) {
+      throw new NotFoundError('User not found');
+    }
+    const id = user.getId();
+    const role = user.getRole();
+    
+    const accessToken = this.authenticator.generateToken({ id, role }, '10min');
+
+    return { accessToken };
   }
 }

@@ -7,7 +7,7 @@ import { UserDatabase } from '../../data/UserDatabase';
 import { RefreshTokenDatabase } from '../../data/RefreshTokenDatabase';
 import { BaseDatabase } from '../../data/BaseDatabase';
 import { SignUpInputDTO, LoginInputDTO } from '../../model/User';
-import { TokenResponseDTO } from '../../model/RefreshToken';
+import { TokenResponseDTO, RefreshTokenInputDTO } from '../../model/RefreshToken';
 
 export class UserController {
   private static userBusiness = new UserBusiness(
@@ -44,5 +44,17 @@ export class UserController {
     }
 
     await BaseDatabase.destroyConnection();
+  }
+
+  public getAccessTokenByRefreshToken = async (req:Request, res:Response) => {
+    try {
+      const input:RefreshTokenInputDTO = req.body;
+
+      const token:TokenResponseDTO = await UserController.userBusiness.getAccessTokenByRefreshToken(input);
+
+      res.status(200).send(token);
+    } catch (error) {
+      res.status(error.statusCode || 400).send({ message: error.message });
+    }
   }
 }

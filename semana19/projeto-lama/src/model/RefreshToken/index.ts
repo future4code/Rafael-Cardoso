@@ -39,3 +39,8 @@ export interface TokenResponseDTO {
   accessToken:string,
   refreshToken?:string
 }
+
+export interface RefreshTokenInputDTO {
+  refreshToken:string,
+  device:string
+}

@@ -56,5 +56,7 @@ export class UserController {
     } catch (error) {
       res.status(error.statusCode || 400).send({ message: error.message });
     }
+
+    await BaseDatabase.destroyConnection();
   }
 }

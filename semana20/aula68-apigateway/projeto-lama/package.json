@@ -4,7 +4,7 @@
     "description": "Template para o projeto LAMA",
     "main": "index.js",
     "scripts": {
-        "test": "jest",
+        "deploy": "sls deploy",
         "start": "ts-node-dev ./src/index.ts"
     },
     "keywords": [
@@ -23,6 +23,7 @@
         "moment": "^2.27.0",
         "mysql": "^2.18.1",
         "serverless-http": "^2.5.0",
+        "serverless": "^1.74.1",
         "typescript": "^3.9.6",
         "uuid": "^8.2.0"
     },
@@ -33,7 +34,6 @@
         "@types/jsonwebtoken": "^8.5.0",
         "@types/knex": "^0.16.1",
         "@types/uuid": "^8.0.0",
-        "serverless": "^1.78.1",
         "serverless-dotenv-plugin": "^3.0.0",
         "serverless-offline": "^6.5.0",
         "serverless-webpack": "^5.3.3",

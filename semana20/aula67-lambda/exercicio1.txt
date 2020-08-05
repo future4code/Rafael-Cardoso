@@ -1,0 +1,22 @@
+a) O código recebe um user e verifica se as validades retornando uma mensagem com status 400 se algo inválido foi enviado e com status 200 em caso de sucesso.
+
+b) Ele fica na primeira verificação, retornando { statusCode: 400, body: "\"message\": \"Missing input\"" }.
+
+c) Também fica na primeira verificação, porque event.user.info nesse caso é undefined. Retorna { statusCode: 400, body: "\"message\": \"Missing input\"" }.
+
+d) Pelo user.email ser undefine, retorna { statusCode: 400, body: "\"message\": \"Missing email\"" }.
+
+e) Pela senha ter menos de 6 caracteres, retorna { statusCode: 400, body: "\"message\": \"Invalid password\"" }.
+
+f) Está tudo correto, retorna { statusCode: 200, body: "\"message\": \"User is correct\"" }.
+
+g) Pode ser acrescentada mais uma verificação:
+
+if (user.email.indexOf("@") === -1) {
+  return {
+    statusCode: 422,
+    body: JSON.stringify({ message: "Invalid email"})
+  };
+}
+
+h) A entrada mostrada no item f passa por todas as verificações e return um objeto com statusCode: 200.
